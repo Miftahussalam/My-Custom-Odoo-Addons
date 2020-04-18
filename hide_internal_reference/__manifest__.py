@@ -7,7 +7,7 @@
 
     'description': """
         Currently in Odoo the product internal reference appear beside the product name beside sale order, invoice, etc.. 
-        Like this "[CODE] Product Name". Using this module we hide the problematic.
+        Like this "[CODE] Product Name". Using this module will hide the problematic.
     """,
 
     'author': "Lima Bersaudara",
