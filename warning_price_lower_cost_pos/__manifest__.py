@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Warning Price Below Cost Sale",
+    'name': "Warning Price Lower Cost POS",
 
     'summary': """
-        Give a warning if product price set below the product cost
+        Give a warning if product price set lower than the product cost
         """,
 
     'description': """
         On retail store customers can do negotiate the product that they want.
-        But sometimes a cashier can do some mistake such change the product price bellow product cost.
+        But sometimes a cashier can do some mistake such change the product price lower than the product cost.
         Using this module we can give an alert like red color on the product order line if cashiers do that mistake.
     """,
 
@@ -23,7 +23,7 @@
     'version': '13.0.0.0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['sale'],
+    'depends': ['point_of_sale'],
 
     # always loaded
     'data': [
@@ -35,4 +35,9 @@
     # 'demo': [
     #     'demo/demo.xml',
     # ],
+    'qweb': [
+        'static/src/xml/pos.xml'
+    ],
+    'application': False,
+    'installable': True,
 }
