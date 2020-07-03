@@ -11,6 +11,7 @@
             <tree>
               <field
                       name="product_id"
+                      invisible="1"
                       options="{'no_open': True, 'no_create': True, 'no_create_edit': True}"
                       attrs="{
                                             'readonly': [('state', 'in', ('purchase', 'to approve','done', 'cancel'))],
