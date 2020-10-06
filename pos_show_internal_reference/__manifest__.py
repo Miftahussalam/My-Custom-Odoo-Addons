@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "pos_show_internal_reference",
+    'name': "POS Showing Product Internal Reference",
 
     'summary': """
         Showing Product Internal Reference on Point of Sale
