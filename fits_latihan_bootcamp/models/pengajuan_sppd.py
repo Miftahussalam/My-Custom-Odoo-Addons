@@ -33,7 +33,7 @@ class PengajuanSppd(models.Model):
     total = fields.Float(string='Total', compute='get_total')
 
     expenses_id = fields.Many2one('hr.expense.sheet', string='Expenses Report')
-    lphd_ids = fields.One2many('report.lphd', 'sppd_ids', string='LPHD')
+    lphd_ids = fields.Many2one('report.lphd', string='LPHD')
 
     @api.depends('sppd_line_ids.sub_total')
     def get_total(self):
@@ -73,7 +73,6 @@ class PengajuanSppd(models.Model):
         for sppd in self:
             exp = lphd_model.create({
                 'sppd_ids': sppd.id,
-                'nama_karyawan': sppd.employee_id.id
             })
 
             for line in sppd.sppd_line_ids:
@@ -81,7 +80,7 @@ class PengajuanSppd(models.Model):
                     'jenis_biaya': line.product_id.id,
                     'lphd_id': exp.id
                 })
-            sppd.lphd_id = exp.id
+            sppd.lphd_ids = exp.id
 
     def action_submit(self):
         if self.name == 'New':

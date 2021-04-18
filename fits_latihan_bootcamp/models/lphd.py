@@ -11,8 +11,10 @@ class Lphd(models.Model):
     nama_karyawan = fields.Many2one(string='Nawa Karyawan', related='sppd_ids.employee_id')
     manager = fields.Many2one(string='Manager', related='sppd_ids.manager_id')
     departement = fields.Many2one(string='Departement', related='nama_karyawan.department_id')
+
     periode_dari = fields.Date(string='Periode Dari')
     periode_sampai = fields.Date(string='Periode Sampai')
+
     maksud_utama = fields.Char(string='Maksud Utama')
     wilayah_dikunjungi = fields.Char(string='Wilayah yang di kunjungi')
 
@@ -54,7 +56,7 @@ class RealisasiBiaya(models.Model):
     _name = 'realisasi.biaya.line'
     _description = 'Realisasi Biaya'
 
-    jenis_biaya = fields.Many2one('product.product', string='Jenis Biaya', domain=[('can_be_expensed', '=', True)], default=_get_product)
+    jenis_biaya = fields.Many2one('product.product', string='Jenis Biaya', domain=[('can_be_expensed', '=', True)])
     biaya_hari_1 = fields.Float(string='Biaya Hari-1')
     biaya_hari_2 = fields.Float(string='Biaya Hari-2')
     biaya_hari_3 = fields.Float(string='Biaya Hari-3')
@@ -62,7 +64,6 @@ class RealisasiBiaya(models.Model):
     biaya_hari_5 = fields.Float(string='Biaya Hari-5')
     sub_total = fields.Float(string='Sub Total', compute='_get_subtotal')
     lphd_id = fields.Many2one('report.lphd', string='LPHD')
-
 
     @api.depends('biaya_hari_1', 'biaya_hari_2', 'biaya_hari_3', 'biaya_hari_4', 'biaya_hari_5')
     def _get_subtotal(self):
