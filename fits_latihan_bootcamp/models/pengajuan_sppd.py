@@ -73,6 +73,10 @@ class PengajuanSppd(models.Model):
         for sppd in self:
             exp = lphd_model.create({
                 'sppd_ids': sppd.id,
+                'periode_dari': sppd.date_from,
+                'periode_sampai': sppd.date_to,
+                'maksud_utama': sppd.note,
+                'wilayah_dikunjungi': sppd.wilayah,
             })
 
             for line in sppd.sppd_line_ids:
