@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="report_sppd"
+        string="Report pengajuan SPPD"
+        model="report.pengajuan.sppd"
+        report_type="qweb-pdf"
+        file="report.pengajuan.sppd"
+        name="fits_latihan_bootcamp.report_pengajuan_sppd_document"
+    />
+
+    <template id="report_pengajuan_sppd_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <h5>
+                                    <strong>SURAT PENGAJUAN PERJALANAN DINAS</strong><br/>
+                                    <strong>No SPPD<span style="color:white;"></span><span t-field="o.name"/></strong><br/>
+                                    <strong>
+                                        Tanggal Pengajuan
+                                        <span style="color:white;">-</span><span t-field="o.date" t-options='{"format": "dd/MM/yyyy"}'/>
+                                    </strong>
+                                </h5>
+                            </div>
+                        </div>
+                        <br/>
+                        <table width="50%">
+                            <tr>
+                                <td>Nama Karyawan</td>
+                                <td>:<span style="color: white;">-</span><span t-field="o.employee_id"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Maksud Utama</td>
+                                <td>:<span style="color: white">-</span><span t-field="o.note"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Periode</td>
+                                <td>:<span style="color: white;">-</span><span t-field="o.date_from" t-options='{"format":"dd/MM/yyyy"}'/> s/d <span t-field="o.date_to" t-options='{"format":"dd/MM/yyyy"}'/></td>
+                            </tr>
+                            <tr>
+                                <td>Wilayah Kunjungan</td>
+                                <td>:<span style="color:white;">-</span><span t-field="o.wilayah"/></td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table class="table table-condensed" width="100%">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width:35%; border: solid 1px #000">Product</th>
+                                    <th class="text-center" style="width:35%; border: solid 1px #000">Qty</th>
+                                    <th class="text-center" style="width:35%; border: solid 1px #000">Amount</th>
+                                    <th class="text-center" style="width:35%; border: solid 1px #000">Subtotal</th>
+                                    <th class="text-center" style="width:35%; border: solid 1px #000">Keterangan</th>
+                                </tr>
+                            </thead>
+                            <tbody class="sale_tbody">
+                                <tr t-foreach="o.sppd_line_ids" t-as="line">
+                                    <td class="text-center" style="border: solid 1px #000">
+                                        <span t-field="line.product_id"></span>
+                                    </td>
+                                    <td class="text-center" style="border: solid 1px #000">
+                                        <span t-field="line.qty"></span>
+                                    </td>
+                                    <td class="text-center" style="border: solid 1px #000">
+                                        <span t-field="line.amount"></span>
+                                    </td>
+                                    <td class="text-center" style="border: solid 1px #000">
+                                        <span t-field="line.sub_total"></span>
+                                    </td>
+                                    <td class="text-center" style="border: solid 1px #000">
+                                        <span t-field="line.note"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-center" style="border-left: solid 1px #000; border-bottom: solid 1px #000; font-weight: bold; border-top: solid 1px #000;">Total Biaya</td>
+                                    <td style="border-left: solid 1px #000; border-bottom: solid 1px #000; font-weight: bold; border-top: solid 1px #000;">
+                                        <span t-field="o.total"></span>
+                                    </td>
+                                    <td style="border-bottom: solid 1px #000; border-top: solid 1px #000; border-right: solid 1px #000;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-6 text-center">
+                                <strong>Dibuat oleh</strong>
+                                <br/><br/><br/><br/>
+                                <strong><u><span t-field="o.employee_id"></span></u></strong>
+                            </div>
+                            <div class="col-6 text-center">
+                                <strong>Disetujui oleh</strong>
+                                <br/><br/><br/><br/>
+                                <strong><u><span t-field="o.manager_id"></span></u></strong>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

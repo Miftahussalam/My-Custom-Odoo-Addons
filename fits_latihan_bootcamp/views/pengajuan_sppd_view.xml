@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <record model='ir.ui.view' id='pengajuan_sppd_form'>
+      <field name="name">Pengajuan SPPD</field>
+      <field name="model">report.pengajuan.sppd</field>
+      <field name="arch" type='xml'>
+        <form>
+          <header>
+            <button name="action_submit" states='draft' string="Submit" type="object" class="oe_highlight"/>
+            <button name="action_approve" states='submit' string="Approve" type="object" class="oe_highlight" groups='hr_expense.group_hr_expense_manager'/>
+            <button name="action_convert_to_expense" states='approve' string="Create Expense" type="object" class="oe_highlight" groups='hr_expense.group_hr_expense_manager'/>
+            <button name="action_refuse" states='submit' string="Refuse" type="object" class="oe_highlight" groups='hr_expense.group_hr_expense_manager'/>
+            <button name="action_done" states='convert_to_expense' string="Create LPHD" type="object" class="oe_highlight" groups='hr_expense.group_hr_expense_manager'/>
+            <button name="action_set_draft" states='refuse' string="Set to Draft" type="object" class="oe_highlight"/>
+            <field name="state" widget="statusbar" statusbar_visible="draft,submit,approve,convert_to_expense,refuse,done"/>
+          </header>
+          <sheet>
+            <group>
+              <group>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="wilayah"/>
+                <field name="note"/>
+              </group>
+              <group>
+                <field name="user_id"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="employee_id"/>
+                <field name="manager_id"/>
+              </group>
+            </group>
+            <notebook>
+              <page string="Estimasi Biaya">
+                <field name="sppd_line_ids">
+                  <tree editable="bottom">
+                    <field name="product_id"/>
+                    <field name="qty"/>
+                    <field name="amount"/>
+                    <field name="note"/>
+                    <field name="sub_total"/>
+                  </tree>
+                </field>
+                <group class="oe_subtotal_footer oe_right" colspan="2" name="total_biaya">
+                  <field name="total"/>
+                </group>
+              </page>
+              <page string="Other Information">
+                <group>
+                  <field name="expenses_id"/>
+                  <field name="lphd_ids"/>
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="pengajuan_sppd_tree">
+      <field name="name">Pengajuan SPPD</field>
+      <field name="model">report.pengajuan.sppd</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="date"/>
+          <field name="employee_id"/>
+          <field name="wilayah"/>
+          <field name="state"/>
+        </tree>
+      </field>
+    </record>
+
+<!--    <record model='ir.actions.act_window' id='action_sppd'>-->
+<!--      <field name="name">Pengajuan SPPD</field>-->
+<!--      <field name="res_model">report.pengajuan.sppd</field>-->
+<!--      <field name="view_mode">tree,form</field>-->
+<!--    </record>-->
+
+<!--    <menuitem-->
+<!--            id="menu_sppd"-->
+<!--            name="Pengajuan SPPD"-->
+<!--            action='action_sppd'-->
+<!--            parent="hr_expense.menu_hr_expense_root"-->
+<!--            sequence='5'-->
+<!--    />-->
+
+  </data>
+</odoo>

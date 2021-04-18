@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="report_lphd"
+        string="Report LPHD"
+        model="lphd"
+        report_type="qweb-pdf"
+        file="report.lphd"
+        name="fits_latihan_bootcamp.report_lphd_document"
+    />
+
+    <template id="report_lphd_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <h5>
+                                    <strong>LPHD</strong><br/>
+                                    <strong>No LPHD<span style="color:white;"></span><span t-field="o.no_lphd"/></strong><br/>
+                                </h5>
+                            </div>
+                        </div>
+                        <br/>
+                        <table width="50%">
+                            <tr>
+                                <td>Nama Karyawan</td>
+                                <td>:<span style="color: white;">-</span><span t-field="o.nama_karyawan"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Maksud Utama</td>
+                                <td>:<span style="color: white">-</span><span t-field="o.maksud_utama"></span></td>
+                            </tr>
+                            <tr>
+                                <td>Periode Dari</td>
+                                <td>:<span style="color: white;">-</span><span t-field="o.periode_dari" t-options='{"format":"dd/MM/yyyy"}'/> s/d <span t-field="o.periode_sampai" t-options='{"format":"dd/MM/yyyy"}'/></td>
+                            </tr>
+                            <tr>
+                                <td>Wilayah Kunjungan</td>
+                                <td>:<span style="color:white;">-</span><span t-field="o.wilayah_dikunjungi"/></td>
+                            </tr>
+                            <tr>
+                                <td>Aktivitas</td>
+                                <td>:<span style="color:white;">-</span><span t-field="o.aktivitias"/></td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table class="table table-condensed" width="100%">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width:35%; border: solid 1px #000">Jenis Biaya</th>
+                                    <th class="text-center" style="width:35%; border: solid 1px #000">Biaya Hari-1</th>
+                                    <th class="text-center" style="width:35%; border: solid 1px #000">Biaya Hari-2</th>
+                                    <th class="text-center" style="width:35%; border: solid 1px #000">Biaya Hari-3</th>
+                                    <th class="text-center" style="width:35%; border: solid 1px #000">Biaya Hari-4</th>
+                                    <th class="text-center" style="width:35%; border: solid 1px #000">Biaya Hari-5</th>
+                                    <th class="text-center" style="width:35%; border: solid 1px #000">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody class="sale_tbody">
+                                <tr t-foreach="o.realisasi_biaya_ids" t-as="line">
+                                    <td class="text-center" style="border: solid 1px #000">
+                                        <span t-field="line.jenis_biaya"></span>
+                                    </td>
+                                    <td class="text-center" style="border: solid 1px #000">
+                                        <span t-field="line.biaya_hari_1"></span>
+                                    </td>
+                                    <td class="text-center" style="border: solid 1px #000">
+                                        <span t-field="line.biaya_hari_2"></span>
+                                    </td>
+                                    <td class="text-center" style="border: solid 1px #000">
+                                        <span t-field="line.biaya_hari_3"></span>
+                                    </td>
+                                    <td class="text-center" style="border: solid 1px #000">
+                                        <span t-field="line.biaya_hari_4"></span>
+                                    </td>
+                                    <td class="text-center" style="border: solid 1px #000">
+                                        <span t-field="line.biaya_hari_5"></span>
+                                    </td>
+                                    <td class="text-center" style="border: solid 1px #000">
+                                        <span t-field="line.sub_total"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6" class="text-center" style="border-left: solid 1px #000; border-bottom: solid 1px #000; font-weight: bold; border-top: solid 1px #000;">Total Biaya</td>
+                                    <td style="border-left: solid 1px #000; border-bottom: solid 1px #000; font-weight: bold; border-top: solid 1px #000;">
+                                        <span t-field="o.total"></span>
+                                    </td>
+                                    <td style="border-bottom: solid 1px #000; border-top: solid 1px #000; border-right: solid 1px #000;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-6 text-center">
+                                <strong>LPHD oleh</strong>
+                                <br/><br/><br/><br/>
+                                <strong><u><span t-field="o.nama_karyawan"></span></u></strong>
+                            </div>
+                            <div class="col-6 text-center">
+                                <strong>Manager</strong>
+                                <br/><br/><br/><br/>
+                                <strong><u><span t-field="o.manager"></span></u></strong>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

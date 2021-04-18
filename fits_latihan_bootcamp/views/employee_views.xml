@@ -1,0 +1,73 @@
+<odoo>
+  <data>
+    <!-- Form Divisi-->
+
+    <record model="ir.ui.view" id="hr_divisi_tree">
+      <field name="name">Master Divisi</field>
+      <field name="model">hr.divisi</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="desc"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="hr_divisi_form">
+      <field name="name">Master Divisi</field>
+      <field name="model">hr.divisi</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="desc"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_divisi">
+      <field name="name">Divisi</field>
+      <field name="res_model">hr.divisi</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_divisi" action="action_divisi" parent="hr.menu_human_resources_configuration" sequence="10"/>
+
+    <record model="ir.ui.view" id="inherit_employee_divisi_form">
+      <field name="name">Employee Inherite</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_form"/>
+      <field name="arch" type="xml">
+        <field name="department_id" position="after">
+          <field name="divisi_id"/>
+        </field>
+        <field name="identification_id" position="after">
+          <field name="nik"/>
+        </field>
+        <field name="bank_account_id" position="before">
+          <field name="tgl_bergabung"/>
+        </field>
+        <field name="children" position="after">
+          <field name="agama"/>
+        </field>
+        <notebook position="inside">
+          <page string="Riwayat Pekerjaan">
+            <field name ="riwayat_ids">
+              <tree editable="top">
+                <field name="mulai_bekerja"/>
+                <field name="selesai_bekerja"/>
+                <field name="nama_perusahaan"/>
+                <field name="res_partner_id"/>
+                <field name="jabatan"/>
+              </tree>
+            </field>
+          </page>
+        </notebook>
+      </field>
+    </record>
+
+  </data>
+</odoo>
