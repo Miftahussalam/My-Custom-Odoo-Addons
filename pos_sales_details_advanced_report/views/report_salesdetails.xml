@@ -1,0 +1,37 @@
+<odoo>
+  <data>
+    <template id="report_saledetails_inherit" inherit_id="point_of_sale.report_saledetails">
+      <xpath expr="//table[1]/thead/tr" position="replace">
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Cost Price</th>
+        <th>Price Unit</th>
+        <th>Profit</th>
+      </xpath>
+      <xpath expr="//table[1]/tbody" position="replace">
+        <tr t-foreach='products' t-as='line'>
+          <t t-set="internal_reference" t-value="line['code'] and '[%s] ' % line['code'] or ''"/>
+          <td><t t-esc="internal_reference"/><t t-esc="line['product_name']"/></td>
+          <td>
+            <t t-esc="line['quantity']"/>
+            <t t-if='line["uom"] != "Units"'>
+              <t t-esc='line["uom"]'/>
+            </t>
+          </td>
+          <td>
+            <t t-esc="line['cost']"/>
+          </td>
+          <td>
+            <t t-esc='line["price_unit"]'/>
+            <t t-if='line["discount"] != 0'>
+              Disc: <t t-esc='line["discount"]'/>%
+            </t>
+          </td>
+          <td>
+            <t t-esc="line['profit']"/>
+          </td>
+        </tr>
+      </xpath>
+    </template>
+  </data>
+</odoo>
