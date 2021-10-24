@@ -10,7 +10,7 @@
         Like this "[CODE] Product Name". Using this module will hide the problematic.
     """,
 
-    'author': "Lima Bersaudara",
+    'author': "da Ti Soft Consulting",
     'website': "https://github.com/trinanda/",
     'images': ['static/description/icon.png'],
     # Categories can be used to filter modules in modules listing

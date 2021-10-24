@@ -10,7 +10,7 @@
         POS Hide New Order and Delete Order
     """,
 
-    'author': "Lima Bersaudara",
+    'author': "da Ti Soft Consulting",
     'website': "https://www.github.com/trinanda",
 
     # Categories can be used to filter modules in modules listing

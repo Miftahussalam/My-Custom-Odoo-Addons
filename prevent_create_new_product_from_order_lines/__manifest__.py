@@ -11,7 +11,7 @@
         using this module we can prevent users make the mistakes
     """,
 
-    'author': "Lima Bersaudara",
+    'author': "da Ti Soft Consulting",
     'website': "http://github.com/trinanda",
     'images': ['static/description/icon.png'],
 

@@ -10,7 +10,7 @@
         Showing Product Internal Reference on Point of Sale
     """,
 
-    'author': "Lima Bersaudara",
+    'author': "da Ti Soft Consulting",
     'website': "https://github.com/trinanda/",
 
     # Categories can be used to filter modules in modules listing

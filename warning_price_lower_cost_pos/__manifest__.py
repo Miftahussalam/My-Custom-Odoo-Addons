@@ -12,7 +12,7 @@
         Using this module we can give an alert like red color on the product order line if cashiers do that mistake.
     """,
 
-    'author': "Lima Bersaudara",
+    'author': "da Ti Soft Consulting",
     'website': "https://github.com/trinanda/",
     'images': ['static/description/icon.png'],
 
