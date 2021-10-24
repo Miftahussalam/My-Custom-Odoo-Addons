@@ -1,7 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hr_divisi,acces_hr_divisi,model_hr_divisi,,1,1,1,1
-access_riwayat_pekerjaan,acces_riwayat_pekerjaan,model_riwayat_pekerjaan,,1,1,1,1
-access_pengajuan_sppd,acces_pengajuan_sppd,model_report_pengajuan_sppd,,1,1,1,1
-access_pengajuan_sppd_line,acces_pengajuan_sppd_line,model_pengajuan_sppd_line,,1,1,1,1
-access_lphd,access_lphd,model_report_lphd,,1,1,1,1
-access_realisasi_biaya_line,access_realisasi_biaya_line,model_realisasi_biaya_line,,1,1,1,1
