@@ -37,10 +37,10 @@
             <t t-esc="'%.1f'% line['total_sale']"/>
           </td>
           <td>
-            <t t-esc="'%.1f'% line['profit']"/>
+            <t t-esc="'%.2f'% line['profit']"/>
           </td>
           <td>
-            <t t-esc="'%.1f'% line['percentage']"/>
+            <t t-esc="'%.0f'% line['percentage']"/>
           </td>
         </tr>
       </xpath>
