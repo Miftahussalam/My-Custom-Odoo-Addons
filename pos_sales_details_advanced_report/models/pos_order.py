@@ -65,14 +65,28 @@ class ReportSaleDetails(models.AbstractModel):
         user_currency = self.env.company.currency_id
 
         total = 0.0
+        total_profit = 0.0
+        total_costs = 0.0
+        global percentage_profit
         products_sold = {}
         taxes = {}
         for order in orders:
             if user_currency != order.pricelist_id.currency_id:
                 total += order.pricelist_id.currency_id._convert(
                     order.amount_total, user_currency, order.company_id, order.date_order or fields.Date.today())
+
+                for line in order.lines:
+                    total_profit += order.pricelist_id.currency_id._convert(
+                        order.amount_total, user_currency, order.company_id,
+                        order.date_order or fields.Date.today()) + line.product_id.standard_price.currency_id._convert(
+                        order.amount_total, user_currency, order.company_id, order.date_order or fields.Date.today())
             else:
                 total += order.amount_total
+                for line in order.lines:
+                    total_profit += (line.price_unit * line.qty) - (line.product_id.standard_price * line.qty)
+                    total_costs += line.product_id.standard_price * line.qty
+
+            percentage_profit = ((total - total_costs) / total_costs) * 100
             currency = order.session_id.currency_id
 
             for line in order.lines:
@@ -112,15 +126,22 @@ class ReportSaleDetails(models.AbstractModel):
             'payments': payments,
             'company_name': self.env.company.name,
             'taxes': list(taxes.values()),
+            'total_profit': total_profit,
+            'percentage_profit': percentage_profit,
             'products': sorted([{
                 'product_id': product.id,
                 'product_name': product.name,
                 'code': product.default_code,
                 'quantity': qty,
                 'price_unit': price_unit,
+                'total_cost': qty * product.standard_price,
+                'total_sale': qty * price_unit,
                 'discount': discount,
                 'uom': product.uom_id.name,
                 'cost': product.standard_price,
                 'profit': (qty * price_unit) - (qty * product.standard_price),
+                'total_profit': (qty * price_unit) - (qty * product.standard_price),
+                'percentage': (((qty * price_unit) - (qty * product.standard_price)) / (
+                        qty * product.standard_price) if product.standard_price != 0 else 0) * 100,
             } for (product, price_unit, discount), qty in products_sold.items()], key=lambda l: l['product_name'])
         }

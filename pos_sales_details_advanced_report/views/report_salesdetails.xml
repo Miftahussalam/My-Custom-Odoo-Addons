@@ -6,7 +6,10 @@
         <th>Quantity</th>
         <th>Cost Price</th>
         <th>Price Unit</th>
+        <th>Total Cost</th>
+        <th>Total Sale</th>
         <th>Profit</th>
+        <th>% Profit</th>
       </xpath>
       <xpath expr="//table[1]/tbody" position="replace">
         <tr t-foreach='products' t-as='line'>
@@ -28,9 +31,24 @@
             </t>
           </td>
           <td>
-            <t t-esc="line['profit']"/>
+            <t t-esc="'%.1f'% line['total_cost']"/>
+          </td>
+          <td>
+            <t t-esc="'%.1f'% line['total_sale']"/>
+          </td>
+          <td>
+            <t t-esc="'%.1f'% line['profit']"/>
+          </td>
+          <td>
+            <t t-esc="'%.1f'% line['percentage']"/>
           </td>
         </tr>
+      </xpath>
+      <xpath expr="//strong//t[@t-esc='total_paid']" position="after">
+        <br/>
+        <strong>Total Profit: <t t-esc='total_profit' t-options="{'widget': 'float', 'precision': currency_precision}"/></strong>
+        <br/>
+        <strong>Percentage Profit: <t t-esc='"%.2f" % percentage_profit'/>%</strong>
       </xpath>
     </template>
   </data>
