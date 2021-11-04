@@ -128,7 +128,7 @@ class ReportSaleDetails(models.AbstractModel):
             'taxes': list(taxes.values()),
             'total_costs': total_costs,
             'total_profit': total_profit,
-            'percentage_profit': ((total_paid - total_costs) / total_costs) * 100,
+            'percentage_profit': ((user_currency.round(total) - total_costs) / total_costs) * 100,
             'products': sorted([{
                 'product_id': product.id,
                 'product_name': product.name,
@@ -143,6 +143,6 @@ class ReportSaleDetails(models.AbstractModel):
                 'profit': (qty * price_unit) - (qty * product.standard_price) if product.standard_price else 0,
                 'total_profit': (qty * price_unit) - (qty * product.standard_price),
                 'percentage': (((qty * price_unit) - (qty * product.standard_price)) / (
-                        qty * product.standard_price) if product.standard_price != 0 else 0) * 100,
+                        qty * product.standard_price)) * 100 if product.standard_price != 0 else 0,
             } for (product, price_unit, discount), qty in products_sold.items()], key=lambda l: l['product_name'])
         }
