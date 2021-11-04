@@ -141,7 +141,7 @@ class ReportSaleDetails(models.AbstractModel):
                 'uom': product.uom_id.name,
                 'cost': product.standard_price,
                 'profit': (qty * price_unit) - (qty * product.standard_price) if (qty * product.standard_price) != 0 else 0,
-                'total_profit': (qty * price_unit) - (qty * product.standard_price) if (qty * product.standard_price) != 0 else 0,
+                'total_profit': ((qty * price_unit) - (qty * product.standard_price)) if (qty * product.standard_price) != 0 else 0,
                 'percentage': (((qty * price_unit) - (qty * product.standard_price)) / (
                         qty * product.standard_price)) * 100 if product.standard_price != 0 else 0,
             } for (product, price_unit, discount), qty in products_sold.items()], key=lambda l: l['product_name'])
