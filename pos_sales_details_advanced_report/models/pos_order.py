@@ -128,7 +128,7 @@ class ReportSaleDetails(models.AbstractModel):
             'taxes': list(taxes.values()),
             'total_costs': total_costs,
             'total_profit': total_profit,
-            'percentage_profit': percentage_profit,
+            'percentage_profit': ((total_paid - total_costs) / total_costs) * 100,
             'products': sorted([{
                 'product_id': product.id,
                 'product_name': product.name,
