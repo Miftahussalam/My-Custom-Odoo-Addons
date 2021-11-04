@@ -126,7 +126,7 @@ class ReportSaleDetails(models.AbstractModel):
             'payments': payments,
             'company_name': self.env.company.name,
             'taxes': list(taxes.values()),
-            'total_costs': total_costs,
+            'total_costs': total_costs if total_costs != 0 else 0,
             'total_profit': total_profit,
             'percentage_profit': ((user_currency.round(total) - total_costs) / total_costs) * 100,
             'products': sorted([{
@@ -140,8 +140,8 @@ class ReportSaleDetails(models.AbstractModel):
                 'discount': discount,
                 'uom': product.uom_id.name,
                 'cost': product.standard_price,
-                'profit': (qty * price_unit) - (qty * product.standard_price) if product.standard_price else 0,
-                'total_profit': (qty * price_unit) - (qty * product.standard_price),
+                'profit': (qty * price_unit) - (qty * product.standard_price) if product.standard_price != 0 else 0,
+                'total_profit': (qty * price_unit) - (qty * product.standard_price) if product.standard_price else 0,
                 'percentage': (((qty * price_unit) - (qty * product.standard_price)) / (
                         qty * product.standard_price)) * 100 if product.standard_price != 0 else 0,
             } for (product, price_unit, discount), qty in products_sold.items()], key=lambda l: l['product_name'])
