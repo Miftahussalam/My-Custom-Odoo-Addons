@@ -86,7 +86,7 @@ class ReportSaleDetails(models.AbstractModel):
                     total_profit += (line.price_unit * line.qty) - (line.product_id.standard_price * line.qty)
                     total_costs += line.product_id.standard_price * line.qty
 
-            percentage_profit = ((total - total_costs) / total_costs) * 100
+            percentage_profit = ((total - total_costs) / total_costs) * 100 if total_costs != 0 else 0
             currency = order.session_id.currency_id
 
             for line in order.lines:
@@ -128,7 +128,7 @@ class ReportSaleDetails(models.AbstractModel):
             'taxes': list(taxes.values()),
             'total_costs': total_costs if total_costs != 0 else 0,
             'total_profit': total_profit,
-            'percentage_profit': ((user_currency.round(total) - total_costs) / total_costs) * 100,
+            'percentage_profit': ((user_currency.round(total) - total_costs) / total_costs) * 100 if total_costs != 0 else 0,
             'products': sorted([{
                 'product_id': product.id,
                 'product_name': product.name,
