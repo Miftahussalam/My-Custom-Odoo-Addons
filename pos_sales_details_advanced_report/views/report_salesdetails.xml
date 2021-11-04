@@ -49,7 +49,7 @@
       </xpath>
       <xpath expr="//div[hasclass('page')]//strong[text()='Total: ']" position="replace">
         <strong>Total Costs:
-          <t t-esc='"%.2f" % total_costs'/>
+          <t t-esc='total_costs'/>
         </strong>
         <br/>
         <strong>Total Sales:
