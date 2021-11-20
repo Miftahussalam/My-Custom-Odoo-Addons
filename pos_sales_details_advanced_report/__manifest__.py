@@ -21,7 +21,7 @@
     "currency": "USD",
     'version': '14.0.0.0.1',
     'application': False,
-    "license": "Other proprietary",
+    "license": "LGPL-3",
 
     # any module necessary for this one to work correctly
     'depends': ['point_of_sale', 'report_xlsx'],
