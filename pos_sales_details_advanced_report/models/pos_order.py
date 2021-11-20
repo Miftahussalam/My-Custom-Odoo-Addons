@@ -8,12 +8,9 @@ import pytz
 from odoo import api, fields, models, _
 from odoo.osv.expression import AND
 
-_logger = logging.getLogger(__name__)
-
 
 class ReportSaleDetails(models.AbstractModel):
     _inherit = 'report.point_of_sale.report_saledetails'
-    _description = 'Point of Sale Details'
 
     @api.model
     def get_sale_details(self, date_start=False, date_stop=False, config_ids=False, session_ids=False):

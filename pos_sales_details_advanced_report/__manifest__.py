@@ -3,29 +3,33 @@
     'name': "POS Sales Details Advance Report",
 
     'summary': """
-        Add cost price, sales prices and profit to POS Sales Details report
+        Print report in PDF or Excel file,
+        And more useful informations in POS Sales Details report,
         """,
 
     'description': """
-        Add cost price, sales prices and profit to POS Sales Details report
+        Print report in PDF or Excel file,
+        And add cost price, sales prices, profit and percentage profit to POS Sales Details report,
+        it also add information about total cost, total sales, total profit and total percentage profit.
     """,
 
     'author': "da Ti Soft Consulting",
     'website': "https://github.com/trinanda",
     'images': ['static/description/icon.png'],
-
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
     'category': 'Point of Sale',
-    'version': '0.1',
+    "price": 10.00,
+    "currency": "USD",
+    'version': '14.0.0.0.1',
+    'application': False,
 
     # any module necessary for this one to work correctly
-    'depends': ['point_of_sale'],
+    'depends': ['point_of_sale', 'report_xlsx'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'views/report_salesdetails.xml',
+        'views/point_of_sale_report.xml',
+        'wizard/pos_details.xml',
     ],
 }
