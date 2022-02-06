@@ -9,7 +9,7 @@
         pos_enable_disable_cash_control
     """,
 
-    'author': "My Company",
+    'author': "Tri Nanda",
     'website': "http://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
