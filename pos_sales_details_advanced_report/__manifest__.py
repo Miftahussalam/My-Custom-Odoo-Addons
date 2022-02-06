@@ -13,7 +13,7 @@
         it also add information about total cost, total sales, total profit and total percentage profit.
     """,
 
-    'author': "da Ti Soft Consulting",
+    'author': "Tri Nanda",
     'website': "https://github.com/trinanda",
     'images': ['static/description/icon.png'],
     'category': 'Point of Sale',
